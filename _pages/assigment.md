@@ -1,6 +1,6 @@
 ---
 title: "Assignments"
-layout: single
+layout: tags
 permalink: /assignment/
 author_profile: true
 ---
