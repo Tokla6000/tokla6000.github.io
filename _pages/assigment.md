@@ -4,8 +4,8 @@ permalink: /assignment/
 author_profile: true
 ---
 
-[ASSIGMENT 1](/assignment1/):
+[ASSIGNMENT 1](blog/assignment1/):
 
-ASSIGMENT 2:
+ASSIGNMENT 2:
 
-ASSIGMENT 3:
+ASSIGNMENT 3:

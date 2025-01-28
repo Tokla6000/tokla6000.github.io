@@ -1,6 +1,7 @@
 ---
 title: "Assignment 1"
-  - blog
+categories:
+  - Blog
 tags:
   - Assignment
 ---
