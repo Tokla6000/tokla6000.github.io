@@ -3,4 +3,4 @@ permalink: /about/
 title: "About"
 ---
 
-Hello! My name is Tokla Roeum. 
+Hi there! I am a sophomore majoring in Computer Science and intending to minor in Applied Mathematics. I love playing video games. 
