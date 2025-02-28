@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Distant Reading of Rudyard Kipling's Works"
 permalink: /assignment-1/
 author_profile: false
@@ -14,6 +14,7 @@ To begin my analysis, I uploaded the corpus into Voyant Tools. One useful tool i
 
 ### Discussion
 ![Trends of the words old, poor, little, good, bad, and white in the corpus](./assets/images/trends.png "Trends graph")
+
 The graph shows that the decrease in the word “white” correlates to the increase of the word “poor”. This is interesting because firstly, there is a higher frequency of the word “white” in _Kim_ (which is about India) than _Rewards and Fairies_ (which is about children in Britain) and secondly, the increasing trend of “poor” might closely match the increasing trend of another underlying word or context. Regarding the first point, this could explain the nature of colonial texts. While they are mostly about the Orient and its people, they are usually taken into the context of the colonizers. According to Edward Said in his most celebrated work _Orientalism_, orientalism is “a style of thought based upon an ontological and epistemological distinction made between ‘the Orient’ and (most of the time) ‘the Occident.’”[^2] He argues that it is critical to recognize that the existence of every culture calls for the existence of a contrasting “other”, and as such Europe creates the “Orient” in an attempt to define its own identity. It makes sense that there is a higher frequency of “white” and possibly other words to describe non-white in _Kim_ than the _Rewards and Fairies_. Secondly, the negative correlation between “white” and “poor” insinuates that the description of poverty is often not associated with white individuals. This could imply the notion of “white superiority”, a common theme in most Oriental literature. 
 
 Another interesting trend is the word “bad”. Its frequency is almost the same for _Kim_ and _Rewards and Fairies_, but higher for _Plain Tales from the Hills_ shedding light on Kipling’s duality. This pattern suggests that "_Kim_" might contain more of Kipling's appreciation for India rather than only his imperialistic views, which are more prominent in "_Plain Tales from the Hills_" as seen in "Lispeth". The higher frequency of "bad" in the collection may reflect Kipling's critical examination of Indian culture, whereas "_Kim_" potentially offers a more balanced or appreciative view which is comparable to his views of Britain in _Rewards and Fairies_. 
@@ -21,7 +22,9 @@ Another interesting trend is the word “bad”. Its frequency is almost the sam
 <iframe style='width: 565px; height: 735px;' src='https://voyant-tools.org/tool/Trends/?query=bad*&query=bad&query=good&query=little&query=poor&query=white&query=old&corpus=f1ccc29ec5b2cd6eba8fa7fd1f3f6af5'></iframe> 
 
 Next, I used R libraries to graph distinct words between _Rewards and Fairies_ and the other two texts: _Plain Tales from the Hills_ and _Kim_. The further away a word is from the center line the more distinct it is between the texts. According to the figure, examples of distinct words in _Rewards and Fairies_ compared to both _Kim_ and _Plain Tales from the Hills_ are “sir”, “king” “woods”, and “hand”. In comparison both _Kim_ and _Plain Tales from the Hills_ have “boy” and “colonel” as distinct words contrasting to “sir” and “king” which makes sense as these texts are set in a colonial setting. The contrast of “boy” and “sir” could show Kipling’s portrayal of India as inferior to Britain since “boy” represents youth which can be associated with having less wisdom. Moreover, in the comparison of _Rewards and Fairies_ and _Kim_, “evil” appears in _Kim_ which could imply Kipling’s negative view of India. 
+
 ![Graph showing distint words between the texts](./assets/images/distinct.png "Distinct words")
+
 While some inferences can be drawn from these tools, it is worth noting that they are only working with single words and it cannot account for context, irony, or narrative framing. For example, the word “white” can be attributed to race, but it can also be used to describe objects. However, examining the frequency of the word, it is safe to assume–unless Kipling really loves the color white–that it is used in the context of race. To know for sure though, we would need to do close reading in order to discern the meanings of each word based on the context they appear in. A possible improvement would be using the wordVectors package which will allow the exploration of the relationships between words within the corpus by plotting terms using Principal Component Analysis (PCA) as done by Suphan Kirmizialtin and David Joseph Wrisley in _Exploring Gulf Manumission Documents with Word Vectors_.[^3] This process should better reveal the intricate web of ideas and themes throughout the corpus, enhancing our comprehension of its nuanced content.
 
 Through distant reading, clear patterns emerge in Kipling’s portrayal of India and Britain, reinforcing his colonial perspective. The higher frequency of "white" in _Kim_ compared to _Rewards and Fairies_ underscores how colonial texts, even when centered on the Orient, remain anchored in the language of the colonizer. Similarly, the contrast between "boy" and "sir" across the texts signals a constructed hierarchy, framing India as youthful and subordinate to Britain. 
@@ -35,3 +38,4 @@ This computational approach invites a broader question: if the biases of a singl
 [^3]: Kirmizialtin, Suphan, and David Joseph Wrisley. “Exploring Gulf Manumission Documents with Word Vectors.” Journal of Digital Islamicate Research 2, no. 1–2 (December 27, 2024): 1–29. https://doi.org/10.1163/27732363-bja00005. 
 
 
+ -->
