@@ -3,7 +3,6 @@ title: "Distant Reading of Rudyard Kipling's Works"
 permalink: /assignment-1/
 author_profile: false
 ---
-
 ### Motivation
 Voyant and R have an array of visualization tools to perform distant reading. I like to think of distant reading as text analysis where one questions the proximity and frequency of all the words in a corpus. According to Johanna Drucker, “principles like collocation of words are judged relative to other usage–and in contrast to the sum of all other words in a sample” where multiple factors affect the weight of the appearance of the words.[^1] Processes such as parameterization and tokenization which allow computers to “see” words and along with considerations such as of frequency, proximity, and collocation all contribute to a machine “reading”, usually an enormous, inhumane amount of words. Distant reading relies heavily on text processing and statistical analysis; it would be more accurately understood as a text analysis approach which is completely different and not necessarily the opposite of close reading as the naming suggests. Distant reading allows for the detection of “patterns of changes in vocabulary, nomenclature, terminology, moods, themes…” and for the questioning of the larger social and cultural picture. With this in mind I’ve decided on my corpus.[^1]
 
