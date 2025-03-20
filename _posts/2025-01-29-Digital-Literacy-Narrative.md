@@ -31,7 +31,7 @@ As I reflect on my current abilities, I realize that while I’ve made significa
 
 In terms of computational thinking, I want to deepen my understanding of programming languages like Python and R, as well as explore new tools for data visualization and analysis. I’m also keen to learn more about the ethical dimensions of AI and how I can use these technologies responsibly in my creative and academic work. Ultimately, I see digital literacy as a lifelong journey—one that requires continuous learning, critical reflection, and a willingness to embrace new ways of thinking. By combining the strengths of my liberal arts education with the possibilities of digital tools, I hope to push the boundaries of what I can achieve as a student, creator, and thinker.
 
-[^1]: [Drucker, J. (2021)]. The Digital Humanities Coursebook: An Introduction to Digital Methods for Research and Scholarship (1st ed.).](https://www.taylorfrancis.com/books/mono/10.4324/9781003106531/digital-humanities-coursebook-johanna-drucker) Routledge. P. 113.
+[^1]: [Drucker, J. (2021). The Digital Humanities Coursebook: An Introduction to Digital Methods for Research and Scholarship (1st ed.).](https://www.taylorfrancis.com/books/mono/10.4324/9781003106531/digital-humanities-coursebook-johanna-drucker) Routledge. P. 113.
 [^2]: [Berry, David M. (David Michael), and Anders Fagerjord. Digital Humanities : Knowledge and Critique in a Digital Age.](https://search.abudhabi.library.nyu.edu/discovery/fulldisplay?docid=alma990050299520107871&context=L&vid=01NYU_AD:AD) Malden, MA, 2017.
 
 
