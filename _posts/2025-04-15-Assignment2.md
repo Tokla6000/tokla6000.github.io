@@ -1,14 +1,7 @@
 ---
 title: "Assignment 2: From Numbers to 3D Maps - What up for import to Zanzibar?"
-excerpt_separator: ""
+permalink: /assignment-2/
 author_profile: false
-categories:
-    - Assignments
-tags:
-    - Zanzibar
-    - Spacial Data
-    - Kepler GL
-    - Assignment2
 ---
 
 ## Introduction and Context
