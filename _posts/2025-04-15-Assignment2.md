@@ -1,0 +1,76 @@
+---
+title: "Assignment 2: From Numbers to 3D Maps - What up for import to Zanzibar?"
+excerpt_separator: ""
+author_profile: false
+categories:
+    - Assignments
+tags:
+    - Zanzibar
+    - Spacial Data
+    - Kepler GL
+    - Assignment2
+---
+
+## Introduction and Context
+
+Zanzibar, an East African archipelago, has long been a central hub in Indian Ocean trade due to its strategic location at the intersection of maritime routes connecting Africa, Arabia, India, and Southeast Asia. Its main island, Unguja, offered a deep natural harbor that attracted traders and ships from around the world. By the 19th century, Zanzibar had become a significant player in the global economy, exporting goods such as ivory and copal gum, and later gaining renown for its spice trade. Despite disruptions during World War I, Zanzibar remained a vital node in East African trade networks in 1918, continuing to import and export a variety of manufactured goods and raw materials.
+The Zanzibar Gazette played a key role in circulating information about Zanzibar’s economy and society. It preserved historical records of imports into the country in 1918 in which we will extract and examine in this project. Newspapers can often provide us with helpful information and data, offering insights into the historical context of a particular place at a specific time. They initially offer relevant information that is considered important to a community or society as a whole. The chronological structure and ease of use of newspapers make them invaluable for research. By leveraging digital tools and processes, such as the digital preservation of historical materials and modern AI models, the Zanzibar Gazette becomes a primary source for historical records that can be analyzed efficiently. This project will focus on extracting and analyzing the records of imports into Zanzibar for the first three months of 1918. Through techniques of geospatial encoding, modern mapping software, and generative AI models, we will gather historical data and provide a graphical representation, unveiling patterns that may not be easily seen through raw tabular data.
+
+## Methods
+
+We found the digitized version of the Zanzibar Gazette from 1918 to be relatively clear (well-scanned) and contained well-structured tabular data of weekly imports. Our initial assumption was that extracting the values from them would be straightforward. It’s needless to say that the text layer of the PDF is almost entirely useless. It can be used to copy and search for some words with a low chance of success, but trying to copy the entire table is futile. It does not recognize the table structure or how to format it. We attempted to use modern tools to redo the OCR of the tables using Moritz Mähr [guide](https://programminghistorian.org/en/lessons/working-with-batches-of-pdf-files), however even this did not help us extract the data efficiently. Our next idea was to provide the PDF page containing the table and our slightly better redone OCR to an LLM and ask it to extract the tabular data. Yet again, our attempt failed to work effectively, since the LLM was unable to decipher the data accurately. Finally, to our surprise, we found that the simplest approach yielded the best results, simply giving an LLM a screenshot of the table and asking it to produce a CSV file from the image.
+
+The LLM we primarily used was Google’s Gemini 2.0 Flash, which had a relatively high success rate in extracting and generating the tables. We screenshotted the tables from the PDF, as inputting the entire file is impossible due to its enormous size, and we can easily control which tables we want.
+
+![Zanz Gaz Img](/assets/images/zanz_gaz.png)
+
+We uploaded the screenshots, one by one, into Gemini and asked it to “create a CSV file from the table in this image of items imported to Zanzibar.” It generated a CSV file, but the columns were incorrectly labeled, and the values were mismatched, misaligned, or sometimes completely incorrect. Our following prompt will give the tool a little push by clarifying the columns and rows. There was also the issue of the header rows. Within one column, say “H.H Dominion”, there are two columns for “Fras.” and “lbs.” values, so in the prompt, we clarify the two columns: “H.H Dominion Fras.” and “H.H Dominion lbs.” which will make it easier to graph the data later on as well. The output had improved, yet issues of misalignment and other problems persisted. No matter how hard we attempted to modify the prompt, we concluded that the AI model we were using was unable to properly align values, despite accurately extracting them. This was likely due to the unjustified proportions of the table, as the AI model likely relied on a simple script that attempted to extract the values under the assumption that they were formatted in a modern way.
+A few days later, Google released a new model, Gemini 2.5 Pro, which gave us new hope for using an LLM more efficiently to gather data. Unlike the previous “lighter models,” the Gemini 2.5 Pro consistently performed near-perfectly every time with the use of the following prompt:
+
+> The image provided contains a table of imports from a historical gazzette. You must convert the image into a table accurately, ensuring the values are propely aligned. Provide me with a google sheet table of the data and a csv file. The leftmost column contains the following items (row by row): [list of all produce item names]. Header row for this data can be formatted as such: [produce, fras1, lbs1, fras2, ..., total fras, total lbs]
+
+Rather than providing the entire table, we provided only the numerical data section, omitting the produce names and location/weight headers. With this modification, we also included the appropriate text to be placed in the leftmost column (produce names) into the prompt, and the locations were later simply copied into the processed data sheet. With this new model and redesigned approach, we were able to accurately gather our data at a significantly faster rate than before, requiring minimal manual alignment of the values.
+
+## Mapping the Data
+
+To map the data, we used [kepler.gl](www.kepler.gl), an open-source, high-performance web-based geospatial analysis tool designed for visual exploration and analysis of large-scale location data sets. The tables contain the produce, quantity, and the port from which the produce is being imported. Before the data could be uploaded into Kepler, the geolocation of these ports (i.e., “H.H. Dominions”, “British East Africa”, …) had to be determined. While the exact locations of these ports are unclear, we were able to roughly estimate the regions. “H.H. Dominions” refers to areas under the control of the Sultan of Zanzibar, which include Zanzibar Island, Pemba Island, Mombasa, and Malindi. We chose Pemba Island to represent “H.H. Dominions”. “British East Africa” includes the territories in East Africa that were under British colonial rule, encompassing modern-day Kenya and parts of Uganda. The Italian Benadir Ports refer to the ports located in the Benadir region of Somalia, around the Horn of Africa, which were under Italian colonial rule during that period. For “Mafia and other East African Ports”, we chose Mafia as the location. Finally, “Southern Ports” potentially refers to the southern Tanzania coast and northern Mozambique.
+
+Once we had determined the geospatial details, namely a set of latitude and longitude coordinates for each location, we realized that we must completely reformat our data for Kepler to process it accurately. When gathering the data, we ended up with tabular data, which was exactly as we found it in the Gazette.
+
+![Sheets Img](/assets/images/sheets.png)
+
+Nonetheless, we decided to write a simple Python program that would process our data, and using the CSV module, allow us to extract and reformat our data in a “kepler.gl friendly” format. The first version of our script read the data row by row, and only included valid entries into the final formatted CSV.
+
+However, we encountered an issue when attempting to visualize this data in Kepler, as all the produce to Zanzibar arcs would originate and end at single point. Consequently, it was impossible to view individual imports by hovering the cursor over the arc. We used ChatGPT’s o3-mini-high model to add a mathematical function to our script, which would assign a personalized set of coordinates to each imported product within a kilometer of the port coordinates, ensuring that the arcs do not overlap. This significantly improved the map, allowing us to view each individual product as its own distinct arc upon zooming in to the origin or destination port. Furthermore, we decided that the rows that contained the total tonnage of each product were not useful for the visualization that we were implementing therefore we decided to omit them. The thickness of each arc was determined by the total weight, which was calculated in Frasila, a unit of weight used in Zanzibar, equivalent to approximately 35 lbs per Frasila. Below is an extract from the final input data and the interactive map.
+
+| date            | origin_port    | product            | total_weight         | numerical_weight | port_lat           | port_long         | prod_lat            | prod_long         | zanz_lat | zanz_long | zanz_prod_lat       | zanz_prod_long    |
+| --------------- | -------------- | ------------------ | -------------------- | ---------------- | ------------------ | ----------------- | ------------------- | ----------------- | -------- | --------- | ------------------- | ----------------- |
+| 1918-01-05 0:00 | H.H. Dominions | Chillies           | 2 (fras) 25 (lbs)    | 2.714            | -4.856967627496093 | 39.82971936588512 | -4.8469676274960936 | 39.82971936588512 | -6.1659  | 39.2026   | -6.1559             | 39.2026           |
+| 1918-01-05 0:00 | H.H. Dominions | Cloves (Z'bar) New | 5484 (fras) 2 (lbs)  | 5484.057         | -4.856967627496093 | 39.82971936588512 | -4.84772883217098   | 39.83354620020877 | -6.1659  | 39.2026   | -6.1566612046748865 | 39.20642683432365 |
+| 1918-01-05 0:00 | H.H. Dominions | Cloves (Pemba) New | 6039 (fras) 19 (lbs) | 6039.543         | -4.856967627496093 | 39.82971936588512 | -4.853140793172442  | 39.83895816121023 | -6.1659  | 39.2026   | -6.1620731656763486 | 39.21183879532511 |
+| 1918-01-05 0:00 | H.H. Dominions | Cloves Stems       | 235 (fras) 3 (lbs)   | 235.086          | -4.856967627496093 | 39.82971936588512 | -4.8607944618197445 | 39.83895816121023 | -6.1659  | 39.2026   | -6.169726834323651  | 39.21183879532511 |
+| 1918-01-05 0:00 | H.H. Dominions | Copra              | 4364 (fras) 15 (lbs) | 4364.429         | -4.856967627496093 | 39.82971936588512 | -4.864038695307959  | 39.83679043369698 | -6.1659  | 39.2026   | -6.172971067811865  | 39.20967106781186 |
+
+### You may access the final intereractive map [here](/assets/html/zanzibarmap.html)
+
+## Conclusion and Discussion
+
+Upon inspecting the final interactive map, a few interesting patterns emerged which were previously not visible via the tabular data. Since the thickness of each arc is relatively based on the total tonnage, it is simple to observe how much produce was imported from different areas at any given time during the first three months of 1918. Namely, the two biggest importers into Zanzibar were Mafia and other East African ports and H.H. Dominions. Mafia was a large importer of produce such as Copra, where as H.H. Dominions was responsible for a large part of Cloves import. Looking at the data on a weekly scale, another pattern emerges. Arcs to ports further away, such as Southern Ports and Italian Benadir ports appear a lot less frequently, likely due to the ports being geographically further away and the shipping costs associated with important from them. Furthermore, the imports from these distant ports were also less common items, such as Hides, Hippo-teeth, Rhino-horns and Tortoise shells. Combining these findings, we can see that the ports closer to Zanzibar provided important resources such as copra and cloves, whereas ports further away provided rarer materials. Ultimately, we believe that representing the data in this interactive visual format significant helps one to better understand the context and processes of the data, in a much easier to interpret medium than tabular data.
+
+Through this exploration, we were able to explore the vast opportunities but also challenges of using modern tools such as AI and mapping software within digital humanities, specifically in the process of data extraction, processing, and visualization from historical sources. While the time-consuming task of digitizing the primary source of the Zanzibar Gazette had been done for us, we had largely underestimated the complexity of actually working with the data. We had also experienced first hand how modern AI and LLM tools can be useful in helping us with similar processes, yet it is also important to contemplate the implications of using said tools. A very recent article titled [Provocations from the Humanities for Generative AI Research](https://arxiv.org/pdf/2502.19190) highlights important aspects that we all must consider when using generative AI within the humanities and for research purposes.
+
+Lauren Klien (et. al.) write that “models make words, but people make meaning” (p. 6), and the interpretation of AI-generated content cannot be separated from the social and cultural contexts it engages. This is particularly relevant when working with historical materials like the Gazette, where “bias reflects a deeper structural problem, one that will never be fixed unless the power differentials… are challenged at their source” (p. 8). Furthermore, the article mentions that “not all training data is equivalent” (p. 9), encouraging us to think critically about the sources we use, their provenance, and the cultural narratives they reflect or erase. These arguements show us that while generative AI tools offer support in handling large textual datasets and may greatly improve efficiency (as it had happened in our case), they must be used with an awareness of their limitations, cultural implications, and the ethical responsibility that accompanies their use and implementation within humanities research.
+
+## Data and Sources
+
+-   [Full Spreadsheet Data (online)](https://docs.google.com/spreadsheets/d/1joSYuK8fJPSqwge1QwuxYnvoUtvIypX24LVol8-EAUs/edit?usp=sharing)
+
+-   [Final CSV](/assets/files/formatted.csv)
+
+-   [The Zanzibar Clove Industry](https://www.jstor.org/stable/4255387)
+
+-   [History of Zanzibar](https://tziva.org/history-of-zanzibar/)
+
+-   [Measurements and Currencies [in Zanzibar]](https://www.degruyter.com/document/doi/10.1515/9781785331763-003/pdf?licenseType=free)
+
+_Written by: Tokla R and Oleksandr A_
