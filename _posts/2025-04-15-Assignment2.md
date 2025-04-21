@@ -15,7 +15,7 @@ We found the digitized version of the Zanzibar Gazette from 1918 to be relativel
 
 The LLM we primarily used was Google’s Gemini 2.0 Flash, which had a relatively high success rate in extracting and generating the tables. We screenshotted the tables from the PDF, as inputting the entire file is impossible due to its enormous size, and we can easily control which tables we want.
 
-![Zanz Gaz Img](/assets/images/zanz_gaz.png)
+![Zanz Gaz Img](../assets/images/zanz_gaz.png)
 
 We uploaded the screenshots, one by one, into Gemini and asked it to “create a CSV file from the table in this image of items imported to Zanzibar.” It generated a CSV file, but the columns were incorrectly labeled, and the values were mismatched, misaligned, or sometimes completely incorrect. Our following prompt will give the tool a little push by clarifying the columns and rows. There was also the issue of the header rows. Within one column, say “H.H Dominion”, there are two columns for “Fras.” and “lbs.” values, so in the prompt, we clarify the two columns: “H.H Dominion Fras.” and “H.H Dominion lbs.” which will make it easier to graph the data later on as well. The output had improved, yet issues of misalignment and other problems persisted. No matter how hard we attempted to modify the prompt, we concluded that the AI model we were using was unable to properly align values, despite accurately extracting them. This was likely due to the unjustified proportions of the table, as the AI model likely relied on a simple script that attempted to extract the values under the assumption that they were formatted in a modern way.
 A few days later, Google released a new model, Gemini 2.5 Pro, which gave us new hope for using an LLM more efficiently to gather data. Unlike the previous “lighter models,” the Gemini 2.5 Pro consistently performed near-perfectly every time with the use of the following prompt:
@@ -30,7 +30,7 @@ To map the data, we used [kepler.gl](www.kepler.gl), an open-source, high-perfor
 
 Once we had determined the geospatial details, namely a set of latitude and longitude coordinates for each location, we realized that we must completely reformat our data for Kepler to process it accurately. When gathering the data, we ended up with tabular data, which was exactly as we found it in the Gazette.
 
-![Sheets Img](/assets/images/sheets.png)
+![Sheets Img](../assets/images/sheets.png)
 
 Nonetheless, we decided to write a simple Python program that would process our data, and using the CSV module, allow us to extract and reformat our data in a “kepler.gl friendly” format. The first version of our script read the data row by row, and only included valid entries into the final formatted CSV.
 
@@ -44,7 +44,7 @@ However, we encountered an issue when attempting to visualize this data in Keple
 | 1918-01-05 0:00 | H.H. Dominions | Cloves Stems       | 235 (fras) 3 (lbs)   | 235.086          | -4.856967627496093 | 39.82971936588512 | -4.8607944618197445 | 39.83895816121023 | -6.1659  | 39.2026   | -6.169726834323651  | 39.21183879532511 |
 | 1918-01-05 0:00 | H.H. Dominions | Copra              | 4364 (fras) 15 (lbs) | 4364.429         | -4.856967627496093 | 39.82971936588512 | -4.864038695307959  | 39.83679043369698 | -6.1659  | 39.2026   | -6.172971067811865  | 39.20967106781186 |
 
-### You may access the final intereractive map [here](/assets/html/zanzibarmap.html)
+### You may access the final intereractive map [here](../assets/html/zanzibarmap.html)
 
 ## Conclusion and Discussion
 
@@ -58,7 +58,7 @@ Lauren Klien (et. al.) write that “models make words, but people make meaning�
 
 -   [Full Spreadsheet Data (online)](https://docs.google.com/spreadsheets/d/1joSYuK8fJPSqwge1QwuxYnvoUtvIypX24LVol8-EAUs/edit?usp=sharing)
 
--   [Final CSV](/assets/files/formatted.csv)
+-   [Final CSV](../assets/files/formatted.csv)
 
 -   [The Zanzibar Clove Industry](https://www.jstor.org/stable/4255387)
 
