@@ -1,7 +1,8 @@
 ---
-title: "DLN"
-permalink: /DLN/
+title: "Digital Literacy Narrative"
 author_profile: false
+permalink: /DLN/
+last_modified_at: 2025-04-30
 ---
 ### Reflection on Digital Literacy as a 20-Year-Old Liberal Arts University Student
 
@@ -17,7 +18,11 @@ Collaboration has been another key component of my digital literacy journey. I h
 
 For data manipulation and analysis, I’ve learnt programming languages such as C and python along with some of their useful libraries. These resources have enabled me to manipulate data in meaningful ways. In one project for class, I used C to build a simple library management system that demonstrated how data can be stored and retrieved efficiently using hash functions. With Python, using libraries like BeautifulSoup, I've learned to parse HTML documents, extracting valuable information from websites. This skill has proven invaluable for gathering large datasets from online sources, opening up new avenues for research across various disciplines. Additionally, my work with Pandas has taught me the intricacies of data cleaning and analysis, allowing me to transform raw data into insightful information.The possibilities with these combinations of tools are endless, especially with how much data can be found online, scraping them will allow one to see certain connections and draw interesting conclusions. While my expertise in these areas is still developing, these tools have already shown me how they can be applied across disciplines—from analyzing trends in literature to visualizing historical data.
 
+My recent experiences with data analysis have made me appreciate that data is never neutral or context-free. As Yanni Loukissas argues in All Data Are Local: Thinking Critically in a Data-Driven Society, every dataset carries the imprint of the specific place, time, and community from which it originates[^3]. Loukissas’s principle that “all data are local” reminds me to consider not just the technical aspects of data manipulation, but also the social and cultural contexts that shape the data I work with-whether I’m scraping websites for information or analyzing historical texts. This perspective encourages me to look beyond the surface of datasets, asking questions about their origins, purposes, and the assumptions embedded within them.
+
 In a course on Digital Humanities, I was introduced to the concept of “distant reading,” which uses computational methods to analyze large volumes of text. Distant reading allows for the detection of “patterns of changes in vocabulary, nomenclature, terminology, moods, themes…” (113) and for the questioning of the larger social and cultural picture[^1]. By using tools like Voyant Tools and R libraries, I can do exactly that. For example, I recently analyzed a corpus of Rudyard Kipling’s works using Voyant Tools and R libraries. Drawing from my Core class, I understood the underlying context of colonialism and wanted to see if I could find any interesting trends within the texts. By examining Kipling’s word choices across his texts, such as “bad” and “good”, I was able to identify recurring themes tied to his imperialistic views and draw broader conclusions about colonial literature as a whole. This project deepened my understanding of computational methods which do not replace normal close reading but expand its scope, highlighting their potential for uncovering cultural and ideological patterns.
+
+“Distant reading” is particularly powerful when applied to digitized historical newspapers. As highlighted in the essay “Why We Should Digitize Historical Newspapers,” such newspapers are invaluable for documenting the knowledge, communication, and cultural life of entire communities-especially minorities whose histories are often underrepresented in mainstream archives[^4]. Digitizing these newspapers not only preserves fragile materials but also enables new forms of linguistic, historical, and cultural analysis, making them accessible for research, education, and cultural projects
 
 ### Collaboration and Computational Thinking
 
@@ -33,4 +38,9 @@ In terms of computational thinking, I want to deepen my understanding of program
 
 [^1]: [Drucker, J. (2021). The Digital Humanities Coursebook: An Introduction to Digital Methods for Research and Scholarship (1st ed.).](https://www.taylorfrancis.com/books/mono/10.4324/9781003106531/digital-humanities-coursebook-johanna-drucker) Routledge. P. 113.
 [^2]: [Berry, David M. (David Michael), and Anders Fagerjord. Digital Humanities : Knowledge and Critique in a Digital Age.](https://search.abudhabi.library.nyu.edu/discovery/fulldisplay?docid=alma990050299520107871&context=L&vid=01NYU_AD:AD) Malden, MA, 2017.
+[^3]:[Loukissas, Yanni Alexander. All Data Are Local: Thinking Critically in a Data-Driven Society. Foreword by Geoffrey C. Bowker, The MIT Press, 2019.](https://web.archive.org/web/20240628020226/https://minorecs.hypotheses.org/495)
+[^4]:[“Why We Should Digitize Historical Newspapers – Theses on Their Importance for Minority Heritage.” Minorities Records, 9 Mar. 2016, minorecs.hypotheses.org/495](https://direct.mit.edu/books/oa-monograph/4323/All-Data-Are-LocalThinking-Critically-in-a-Data)
+
+
+
 
