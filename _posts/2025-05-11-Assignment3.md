@@ -3,6 +3,7 @@ title: "Assignment 3"
 permalink: /assignment-3/
 author_profile: false
 ---
+> Please check [Aleks](https://oleksandr3010.github.io/) website for the lastest changes if there are any
 
 ## Introduction and Idea Creation
 
