@@ -56,15 +56,15 @@ While it is difficult to say why exactly they were misplaced, we can certainly s
 
 Our next tool is 2DCLIP, which uses OpenAI’s CLIP to transform complex, high-dimensional relationships among images into an interactive, visual map. This allows us to see, at a glance, how the collection is structured–revealing clusters and connections. The default clustering resulted in a similar grid to Orange Data Mining, revealing similarities between the posters such as color schemes and composition. However, with 2DCLIP, we could prompt the x and y axis which leverages the model’s ability to organize or search the image and relate them to text descriptions. With this corpus, we plotted “auditory intensity” vs “japanese”. With “auditory intensity” we wanted to see whether CLIP is able to link visual chaos to imagined sound. The upper region of the plot (high "auditory intensity") is populated by games like Control, Resident Evil 2, Resident Evil 3, The Evil Within 2, and Zombie Army 4 Dead War. These are mainly horror, action, or thriller games known for intense, immersive sound design-reflecting how the neural network associates certain visual cues (dark palettes, dramatic compositions, horror iconography) with the concept of "auditory intensity." With the “Japanese” axis, we wanted to test CLIP’s awareness of geographically coded symbols in grouping region-specific games accurately. CLIP grouped the Yakuza games, Tales of Zestiria and Tales of Berseria, as more “Japanese” than others.
 
-![Yakuza](../assets/images/posters/Yakuza Kiwami.jpg)
+![Yakuza](/assets/images/posters/Yakuza Kiwami.jpg)
 
 The Yakuza games have Japanese writing in their covers which explains why they are easily recognized as “Japanese”. Tales of Zestiria and Tales of Berseria, despite not having any Japanese characters, is recognized as “Japanese” likely due to the anime-like art.
 
-![Tales of Berseria](../assets/images/posters/Tales of Berseria.jpg)
+![Tales of Berseria](/assets/images/posters/Tales of Berseria.jpg)
 
 However, there are games like Ghost of Tsushima (which is about a vengeful samurai) and Dark Souls (made by a Japanese game studio) that are not recognized as “Japanese”.
 
-![Ghost of Tsushima](../assets/images/posters/Ghost of Tsushima.jpg)
+![Ghost of Tsushima](/assets/images/posters/Ghost of Tsushima.jpg)
 
 This cluster allows us to understand the extent of CLIP’s training and its ability to recognize labels. As [Impett & Offert](https://www.tandfonline.com/doi/full/10.1080/01973762.2024.2362466) argue, "in reading a corpus of visual culture through a neural network, we are always also doing the reverse." By projecting game covers onto axes like "auditory intensity" and "Japanese," we see how these cultural and sensory concepts are distributed in the dataset. We learn, for example, that horror and action games, regardless of origin, are visually marked in ways that CLIP associates with "auditory intensity." The network’s clustering shows that it recognizes "auditory intensity" as a visual property (darkness, drama, chaos), and that its understanding of "Japanese" is not strictly tied to developer nationality but to visual signifiers (art style, character design, typography). The overlap and separation in clusters reveal the model’s latent biases and the features it prioritizes when mapping abstract prompts to visual data.
 
