@@ -1,5 +1,5 @@
 ---
-title: "Assignment 3: The Art in Games - What can an algorithm tell us about PS4 Video Game Cover Art?"
+title: "The Art in Games - What can an algorithm tell us about PS4 Video Game Cover Art?"
 excerpt_separator: ""
 author_profile: false
 categories:
