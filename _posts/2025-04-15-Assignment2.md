@@ -1,5 +1,5 @@
 ---
-title: "Assignment 2: From Numbers to 3D Maps - What up for import to Zanzibar?"
+title: "From Numbers to 3D Maps - What up for import to Zanzibar?"
 permalink: /assignment-2/
 author_profile: false
 ---
